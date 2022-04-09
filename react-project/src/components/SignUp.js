@@ -15,6 +15,8 @@ const SignUp = (props) => {
   const [mobileNo, setMobileNo] = useState("");
   const [addressLine1, setAddressLine1] = useState("");
   const [addressLine2, setAddressLine2] = useState("");
+  const [city, setCity] = useState("");
+  const [stateName, setStateName] = useState("");
   const [pinCode, setPinCode] = useState("");
   const [formErrors, setFormErrors] = useState({});
 
@@ -61,6 +63,16 @@ const SignUp = (props) => {
       formErrors["address1"] = "Address is required";
     }
 
+    if (!city) {
+      formIsValid = false;
+      formErrors["city"] = "Please select your City";
+    }
+
+    if (!stateName) {
+      formIsValid = false;
+      formErrors["state"] = "Please select your State";
+    }
+
     //Pincode   
     if (!pinCode) {
       formIsValid = false;
@@ -89,8 +101,8 @@ const SignUp = (props) => {
       address: {
         addressLine1,
         addressLine2,
-        state: 'mh',
-        city: 'pune',
+        state: stateName.label,
+        city: city.label,
         pincode: pinCode,
       }
     };
@@ -113,7 +125,7 @@ const SignUp = (props) => {
   }
 
   const selectStyles = {
-    control: styles => ({ ...styles, borderColor: 'lightgray', padding: '0.6rem', paddingLeft: '0.3rem' }),
+    control: styles => ({ ...styles, padding: '0.6rem', paddingLeft: '0.3rem' }),
   };
 
   return (
@@ -237,22 +249,28 @@ const SignUp = (props) => {
 
                       <div className="form-floating mb-3">
                         <Select
-                          value={{ label: 'Pune', value: 'pune' }}
-                          options={[{ label: 'Pune', value: 'pune' }]}
-                          placeholder='City'
+                          onChange={(data) => setCity(data)}
+                          value={city}
+                          options={[{ label: 'Pune', value: 'pune' }, { label: 'Mumbai', value: 'mumbai' }]}
+                          placeholder='Select City'
                           styles={selectStyles}
-                          isDisabled
                         />
+                        {
+                          !city && <div className="errorMsg">{formErrors["city"]}</div>
+                        }
                       </div>
 
                       <div className="form-floating mb-3">
                         <Select
-                          value={{ label: 'Maharashtra', value: 'mh' }}
+                          onChange={(data) => setStateName(data)}
+                          value={stateName}
                           options={[{ label: 'Maharashtra', value: 'mh' }]}
-                          placeholder='State'
+                          placeholder='Select State'
                           styles={selectStyles}
-                          isDisabled
                         />
+                        {
+                          !stateName && <div className="errorMsg">{formErrors["state"]}</div>
+                        }
                       </div>
 
                       <div className="form-floating mb-3">
