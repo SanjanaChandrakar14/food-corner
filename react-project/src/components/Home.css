@@ -1,0 +1,16 @@
+div .bg-image1 {
+    background-image: url('../data/foodframe.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 550px;
+    width: 100%;
+    color: white;
+}
+
+.bg-image1 .text-header {
+    float: right;
+    margin-right: 12%;
+    margin-top: 5%;
+    text-align: center;
+}

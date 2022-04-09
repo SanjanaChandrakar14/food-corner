@@ -1,0 +1,12 @@
+.signin-button {
+    background-color: black !important;
+}
+
+.bg-image {
+    /* max-height: 400px; */
+    background-image: url('../data/chef.jpg');
+}
+
+.errorMsg {
+    color: rgb(250, 0, 0)
+}
